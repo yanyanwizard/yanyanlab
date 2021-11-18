@@ -31,8 +31,6 @@ Install via [composer](https://getcomposer.org/):
 
 ### Basic example
 ```php
-<?php
-
 require 'vendor/autoload.php';
 
 use SMTPValidateEmail\Validator as SmtpEmailValidator;
@@ -58,8 +56,6 @@ var_dump($log);
 ### Multiple recipients and other details
 
 ```php
-<?php
-
 require 'vendor/autoload.php';
 
 use SMTPValidateEmail\Validator as SmtpEmailValidator;
@@ -74,7 +70,7 @@ $emails    = [
     'someone.else@example.com'
 ];
 $sender    = 'sender@example.org';
-$validator = new SmtpEmailValidator($emails, $sender);
+$validator = new SmtpEmailValidator($email, $sender):
 $results   = $validator->validate();
 
 var_dump($results);
@@ -88,7 +84,7 @@ $emails    = [
     'someone.else@example.com'
 ];
 $sender    = 'sender@example.org';
-$validator = new SmtpEmailValidator();
+$validator = new SmtpEmailValidator():
 $results   = $validator->validate($emails, $sender);
 
 var_dump($results);
@@ -106,8 +102,6 @@ Require the composer package:
 And then in your code:
 
 ```php
-<?php
-
 require 'vendor/autoload.php';
 
 use SMTPValidateEmail\Validator as SMTP_Validate_Email;
@@ -116,7 +110,7 @@ use SMTPValidateEmail\Validator as SMTP_Validate_Email;
 ```
 
 ## Development & Contributions
-See the [Makefile](Makefile) and the development dependencies in [composer.json](composer.json).
+See the [Makefile](Makefile) and the development dependencies in [composer.json](composer.json) and [package.json](package.json).
 
 Running `make` once you clone (or download) the repository gives you:
 
@@ -127,23 +121,23 @@ Usage: make [target]
 --------                       ----
 help                           What you're currently reading
 install                        Installs dev dependencies
-clean                          Removes installed dev dependencies
 test                           Runs tests
 coverage                       Runs tests with code coverage
-server-start                   Stops and starts the smtp server
-server-stop                    Stops smtp server if it's running
-(PIDFILE)                      Starts the smtp server
-(MAILHOG)                      Downloads platform-specific mailhog binary
+$(PIDFILE)                     Starts the smtp-sink server
+server-start                   Stops and starts the smtp-sink server
+server-stop                    Stops smtp-sink server if it's running
+clean                          Removes installed dev dependencies
 ```
 
-So, run `make install` to get started. Afterwards you should be able to run the tests (`make test`).
+So, run `make install` to get started. Afterwards you should be able to run the tests.
 
-Tests are powered by `phpunit` and a local `./bin/mailhog` instance running on port 1025.
-Tests requiring an SMTP server are marked as skipped (if/when the SMTP server is unavailable).
+Tests are powered by `phpunit` and a local `smtp-sink` instance running on port 1025.
+If `smtp-sink` is unavailable, tests requiring it are marked as skipped.
 
 Pull requests are welcome!
 
-In order to get your pull request merged, please follow these simple rules:
+In order to get your pull-request merged,
+please follow these simple rules:
 
 * all code submissions must pass cleanly (no errors) with `make test`
 * stick to existing code style (`phpcs` is used)
